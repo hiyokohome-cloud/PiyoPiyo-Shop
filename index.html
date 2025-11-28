@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🐣PiyoPiyo Shop🐣</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<canvas id="bgCanvas"></canvas>
+
+<div class="container">
+  <header>
+    <h1>🐣PiyoPiyo Shop🐣</h1>
+    <nav>
+      <button id="shopBtn">ショップ一覧</button>
+      <button id="cartBtn">カート</button>
+    </nav>
+  </header>
+
+  <section id="shopSection">
+    <div class="product" data-price="30" data-name="サイトの作り方（PC）">
+      <h2>サイトの作り方（PC）</h2>
+      <p class="price">30Pay</p>
+      <button class="detailBtn">詳細を見る</button>
+    </div>
+    <div class="product" data-price="50" data-name="Discord Bot作り方（PC）">
+      <h2>Discord Bot作り方（PC）</h2>
+      <p class="price">50Pay</p>
+      <button class="detailBtn">詳細を見る</button>
+    </div>
+  </section>
+
+  <section id="detailSection" class="hidden">
+    <div id="detailContent"></div>
+    <div class="detailButtons">
+      <button id="addCartBtn">カートに追加</button>
+      <button id="buyNowBtn">今すぐ購入</button>
+    </div>
+  </section>
+
+  <section id="cartSection" class="hidden">
+    <div id="cartItems"></div>
+    <p>合計: <span id="cartTotal">0</span>Pay</p>
+    <button id="checkoutBtn">まとめて購入</button>
+  </section>
+
+  <div id="purchaseModal" class="modal hidden">
+    <div class="modalContent">
+      <span class="closeBtn">&times;</span>
+      <h2>購入手続き</h2>
+      <div id="purchaseItems"></div>
+      <p>合計: <span id="purchaseTotal"></span>Pay</p>
+      <p id="errorMsg" class="errorMsg"></p>
+      <input type="text" id="paypayLink" placeholder="PayPay受け取りリンクを貼ってください">
+      <button id="confirmPurchaseBtn">購入</button>
+    </div>
+  </div>
+
+  <div id="completeModal" class="modal hidden">
+    <div class="modalContent">
+      <h2>購入が完了しました！</h2>
+      <p>商品をDiscordを開いて「hiyoko0898」にDMで商品を受け取りましょう。</p>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
