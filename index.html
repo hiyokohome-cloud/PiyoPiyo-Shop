@@ -3,69 +3,145 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>🐣PiyoPiyo Shop🐣</title>
-<link rel="stylesheet" href="style.css">
+<title>🐣 PiyoPiyo Shop 🐣</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: "Poppins", "M PLUS Rounded 1c", sans-serif;
+        background: radial-gradient(circle at 50% 50%, rgba(0,145,255,0.7), rgba(0,108,255,0.3), rgba(255,255,0,0.1));
+        overflow-x: hidden;
+        animation: bgmove 8s infinite alternate ease-in-out;
+    }
+
+    @keyframes bgmove {
+        0% { background-position: 0% 0%; }
+        100% { background-position: 100% 100%; }
+    }
+
+    header {
+        text-align: center;
+        padding: 25px 10px;
+        font-size: 35px;
+        font-weight: 700;
+        color: #fff;
+        text-shadow: 0px 0px 10px #70cfff;
+    }
+
+    .search-box {
+        width: 90%;
+        max-width: 500px;
+        margin: 0 auto 30px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .search-box input {
+        width: 100%;
+        padding: 13px;
+        border-radius: 30px;
+        border: none;
+        outline: none;
+        font-size: 17px;
+        text-align: center;
+        background: #ffffffd0;
+        box-shadow: 0 0 8px rgba(0,0,0,0.15);
+    }
+
+    .product-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 25px;
+        padding: 10px 25px 40px;
+    }
+
+    .product {
+        background: #fff;
+        border-radius: 18px;
+        padding: 20px;
+        box-shadow: 0 0 12px rgba(0,0,0,0.1);
+        transition: .3s;
+        border: 3px solid #4fc5ff;
+    }
+
+    .product:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 0 20px rgba(0,0,0,0.18);
+    }
+
+    .product-title {
+        font-size: 22px;
+        font-weight: 700;
+        margin-bottom: 8px;
+        color: #0077ff;
+    }
+
+    .product-desc {
+        font-size: 15px;
+        color: #333;
+        margin-bottom: 10px;
+        line-height: 1.5em;
+    }
+
+    .price {
+        font-size: 20px;
+        font-weight: 700;
+        color: #f7b400;
+        text-shadow: 0px 0px 3px #ffed8b;
+    }
+</style>
 </head>
+
 <body>
 
-<canvas id="bgCanvas"></canvas>
+<header>🐣 PiyoPiyo 商品リスト 🐣</header>
 
-<div class="container">
-  <header>
-    <h1>🐣PiyoPiyo Shop🐣</h1>
-    <nav>
-      <button id="shopBtn">ショップ一覧</button>
-      <button id="cartBtn">カート</button>
-    </nav>
-  </header>
-
-  <section id="shopSection">
-    <div class="product" data-price="30" data-name="サイトの作り方（PC）">
-      <h2>サイトの作り方（PC）</h2>
-      <p class="price">30Pay</p>
-      <button class="detailBtn">詳細を見る</button>
-    </div>
-    <div class="product" data-price="50" data-name="Discord Bot作り方（PC）">
-      <h2>Discord Bot作り方（PC）</h2>
-      <p class="price">50Pay</p>
-      <button class="detailBtn">詳細を見る</button>
-    </div>
-  </section>
-
-  <section id="detailSection" class="hidden">
-    <div id="detailContent"></div>
-    <div class="detailButtons">
-      <button id="addCartBtn">カートに追加</button>
-      <button id="buyNowBtn">今すぐ購入</button>
-    </div>
-  </section>
-
-  <section id="cartSection" class="hidden">
-    <div id="cartItems"></div>
-    <p>合計: <span id="cartTotal">0</span>Pay</p>
-    <button id="checkoutBtn">まとめて購入</button>
-  </section>
-
-  <div id="purchaseModal" class="modal hidden">
-    <div class="modalContent">
-      <span class="closeBtn">&times;</span>
-      <h2>購入手続き</h2>
-      <div id="purchaseItems"></div>
-      <p>合計: <span id="purchaseTotal"></span>Pay</p>
-      <p id="errorMsg" class="errorMsg"></p>
-      <input type="text" id="paypayLink" placeholder="PayPay受け取りリンクを貼ってください">
-      <button id="confirmPurchaseBtn">購入</button>
-    </div>
-  </div>
-
-  <div id="completeModal" class="modal hidden">
-    <div class="modalContent">
-      <h2>購入が完了しました！</h2>
-      <p>商品をDiscordを開いて「hiyoko0898」にDMで商品を受け取りましょう。</p>
-    </div>
-  </div>
+<div class="search-box">
+    <input type="text" id="search" placeholder="🔍 商品を検索する">
 </div>
 
-<script src="script.js"></script>
+<div class="product-list" id="productList">
+    <!-- ★ ここに商品を追加していく ★ -->
+    <div class="product">
+        <div class="product-title">サイトの作り方（PC）</div>
+        <div class="product-desc">初心者でも1からサイトが作れる完全版ガイド。</div>
+        <div class="price">¥30</div>
+    </div>
+
+    <div class="product">
+        <div class="product-title">Discord Botの作り方(PC)</div>
+        <div class="product-desc">招待リンク生成/コマンド/メッセージ返信など全対応！</div>
+        <div class="price">¥40</div>
+    </div>
+
+    </div>
+
+    <div class="product">
+        <div class="product-title">Discord Botの作り方(ios)</div>
+        <div class="product-desc">招待リンク生成/コマンド/メッセージ返信など全対応！</div>
+        <div class="price">¥20</div>
+    </div>
+
+    </div>
+
+    <div class="product">
+        <div class="product-title">サイトの作り方(PC)</div>
+        <div class="product-desc">初心者でも1からサイトが作れる完全版ガイド。</div>
+        <div class="price">¥30</div>
+    </div>
+</div>
+
+<script>
+    const search = document.getElementById("search");
+    const products = document.querySelectorAll(".product");
+
+    search.addEventListener("input", () => {
+        const word = search.value.toLowerCase();
+        products.forEach(p => {
+            p.style.display = p.innerText.toLowerCase().includes(word) ? "" : "none";
+        });
+    });
+</script>
+
 </body>
 </html>
